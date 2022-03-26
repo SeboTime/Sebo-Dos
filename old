@@ -6,15 +6,15 @@ import os
 def DosMain():
 
     DosInput = input("Sebo-Dos:\ ")
-    if DosInput == "shutdown":
+    if DosInput == "close":
         print("")
-        print("Shutdown...")
+        print("close...")
         print("")
         time.sleep(1)
         sys.exit()
     elif DosInput == "help":
         print("Commands:")
-        print("shutdown")
+        print("close")
         print("help")
         print("system.command")
         print("time")
