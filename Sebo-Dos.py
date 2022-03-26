@@ -22,7 +22,7 @@ while True:
 
     if event == "Reset Data":
         open("Data/FirstStart.sebodata", "w").write("True")
-        open("Data/Username.sebodata", "w").write("")
+        open("Data/Username.sebodata", "w").write(" ")
 
         if open("Data/FirstStart.sebodata", "r").read() == "True":
             StartBarTime = FirstStartBarTime
@@ -44,21 +44,21 @@ os.system("cls")
 if open("Data/FirstStart.sebodata", "r").read() == "True":
     open("Data/FirstStart.sebodata", "w").write("False")
 
-if open("Data/Username.sebodata", "r").read() == "":
+if open("Data/Username.sebodata", "r").read() == " ":
     NewName = input("Name: ")
     open("Data/Username.sebodata", "w").write(NewName)
 
 
 os.system("cls")
 
-print("Sebo-Dos Version: 1.6")
+print("Sebo-Dos Version: 1.7")
 print("")
 print("Hello " + str(open("Data/Username.sebodata", "r").read()) + "!")
 print("")
 
 def DosMain():
 
-    command0 = "shutdown"
+    command0 = "close"
     command1 = "help"
     command2 = "system.command"
     command3 = "time"
@@ -72,7 +72,7 @@ def DosMain():
     DosInput = str(input("Sebo-Dos:\ "))
     if DosInput == command0:
         print("")
-        print("Shutdown...")
+        print("close...")
         print("")
         time.sleep(1)
         sys.exit()
@@ -117,7 +117,7 @@ def DosMain():
         OldPaintMain()
     elif DosInput == command7:
         print("")
-        webbrowser.open("https://github.com/SeboTime/Sebo-Dos/releases")
+        webbrowser.open("https://github.com/SeboTime/Sebo-Dos/releases/latest")
         DosMain()
     elif DosInput == command8:
         print("")
