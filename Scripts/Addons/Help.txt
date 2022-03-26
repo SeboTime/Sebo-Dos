@@ -1,0 +1,1 @@
+Don't rename the .py files, but you can edit them or replace them with your python scripts with the same name! 

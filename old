@@ -1,0 +1,46 @@
+import datetime
+import time
+import sys
+import os
+
+def DosMain():
+
+    DosInput = input("Sebo-Dos:\ ")
+    if DosInput == "shutdown":
+        print("")
+        print("Shutdown...")
+        print("")
+        time.sleep(1)
+        sys.exit()
+    elif DosInput == "help":
+        print("Commands:")
+        print("shutdown")
+        print("help")
+        print("system.command")
+        print("time")
+        print("date")
+        print("")
+        DosMain()
+    elif DosInput == "system.command":
+        print("")
+        SystemCommandInput = input("System-Command: ")
+        print("")
+        os.system(SystemCommandInput)
+        print("")
+        DosMain()
+    elif DosInput == "time":
+        print("")
+        print(time.strftime("%H:%M:%S"))
+        print("")
+        DosMain()
+    elif DosInput == "date":
+        print("")
+        print(datetime.date.today())
+        print("")
+        DosMain()
+    else:
+        print("{" + DosInput + "} is not a command, try {help}.")
+        print("")
+        DosMain()
+
+DosMain()
