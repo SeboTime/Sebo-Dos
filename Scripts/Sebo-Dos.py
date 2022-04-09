@@ -38,17 +38,19 @@ if open("Data/AddonLaunch.sebodata", "r").read() == "False":
                 break
 
         if event == sg.WIN_CLOSED:
-            sys.exit()
+            open("Data/Closed.sebodata", "w").write("True")
+            os.system("py Launcher.py")
 
     if open("Data/FirstStart.sebodata", "r").read() == "True":
         open("Data/FirstStart.sebodata", "w").write("False")
 
     if open("Data/Username.sebodata", "r").read() == " ":
+        print("")
         NewName = input("Name: ")
         open("Data/Username.sebodata", "w").write(NewName)
     
     print("")
-    print("Sebo-Dos Version: 1.7")
+    print("Sebo-Dos Version: 1.7.1")
     print("")
     print("Hello " + str(open("Data/Username.sebodata", "r").read()) + "!")
     
