@@ -13,13 +13,14 @@ StartWindow = sg.Window(title="Sebo-Dos", icon="Icons/Sebo-Dos.ico", background_
 
 FirstStartBarTime = random.randint(25, 100)
 StartBarTime = random.randint(10, 25)
+WinClosed = False
 
 while True:
     event, values = StartWindow.read()
     if event == "Reset Data":
-        open("Data/FirstStart.sebodata", "w").write("True")
-        open("Data/Username.sebodata", "w").write(" ")
-    if open("Data/FirstStart.sebodata", "r").read() == "True":
+        open("Data/FirstStart.data", "w").write("True")
+        open("Data/Username.data", "w").write(" ")
+    if open("Data/FirstStart.data", "r").read() == "True":
         StartBarTime = FirstStartBarTime
     if event == "Start Sebo-Dos":
         with tqdm.tqdm(total=StartBarTime, desc="Starting", colour="blue") as StartBar:
@@ -30,20 +31,23 @@ while True:
             StartBar.close()
             break
     if event == sg.WIN_CLOSED:
-        open("Data/Closed.sebodata", "w").write("True")
-        os.system("py Launcher.py")
+        open("Data/Closed.data", "w").write("True")
+        open("Data/Returned.data", "w").write("True")
+        WinClosed = True
+        break
 
-if open("Data/FirstStart.sebodata", "r").read() == "True":
-    open("Data/FirstStart.sebodata", "w").write("False")
-if open("Data/Username.sebodata", "r").read() == " ":
+if WinClosed == False:
+    if open("Data/Username.data", "r").read() == " ":
+        print("")
+        NewName = input("Name: ")
+        open("Data/Username.data", "w").write(NewName)
+    if open("Data/FirstStart.data", "r").read() == "True":
+        open("Data/FirstStart.data", "w").write("False")
+        
     print("")
-    NewName = input("Name: ")
-    open("Data/Username.sebodata", "w").write(NewName)
-    
-print("")
-print("Sebo-Dos Version: 1.8")
-print("")
-print("Hello " + str(open("Data/Username.sebodata", "r").read()) + "!")
+    print("Sebo-Dos Version: 1.8")
+    print("")
+    print("Hello " + str(open("Data/Username.data", "r").read()) + "!")
 
 def DosMain():
     Icommand = ["close", "return", "help"]
@@ -51,10 +55,10 @@ def DosMain():
     print("")
     MainInput = str(input("Sebo-Dos:\ "))
     if MainInput == Icommand[0]:
-        open("Data/Closed.sebodata", "w").write("True")
+        open("Data/Closed.data", "w").write("True")
     elif MainInput == Icommand[1]:
-        open("Data/Closed.sebodata", "w").write("True")
-        open("Data/Returned.sebodata", "w").write("True")
+        open("Data/Closed.data", "w").write("True")
+        open("Data/Returned.data", "w").write("True")
     elif MainInput == Icommand[2]:
         print("Commands:")
         for Icommands in Icommand:
@@ -76,4 +80,5 @@ def DosMain():
         print("{" + MainInput + "} is not a command, try {help}.")
         DosMain()
 
-DosMain()
+if WinClosed == False:
+    DosMain()
