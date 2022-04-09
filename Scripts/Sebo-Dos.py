@@ -41,7 +41,7 @@ if open("Data/Username.sebodata", "r").read() == " ":
     open("Data/Username.sebodata", "w").write(NewName)
     
 print("")
-print("Sebo-Dos Version: 1.8")
+print("Sebo-Dos Version: 1.7")
 print("")
 print("Hello " + str(open("Data/Username.sebodata", "r").read()) + "!")
 
