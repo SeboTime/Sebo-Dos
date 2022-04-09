@@ -1,21 +1,21 @@
 import time
 import os
 
-commands = ["close", "installer", "sebo-dos"]
+command = ["close", "installer", "sebo-dos"]
 
 print("Commands:")
-print(commands[0])
-print(commands[1])
-print(commands[2])
+print(command[0])
+print(command[1])
+print(command[2])
 
 while True:
     print("")
     DosInput = str(input("Launcher: "))
-    if DosInput == commands[0]:
+    if DosInput == command[0]:
         break
-    elif DosInput == commands[1]:
+    elif DosInput == command[1]:
         os.system("py Scripts/Install.py")
-    elif DosInput == commands[2]:
+    elif DosInput == command[2]:
         print("")
         os.system("py Scripts/Sebo-Dos.py")
         if open("Data/Closed.sebodata", "r").read() == "True":
@@ -38,3 +38,5 @@ while True:
             print("Your data is corrupted!")
             time.sleep(10)
             break
+    else:
+        print("{" + DosInput + "}" + "is not a command!")
