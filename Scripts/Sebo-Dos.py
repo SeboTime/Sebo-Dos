@@ -59,16 +59,10 @@ def DosMain():
         open("Data/Returned.sebodata", "w").write("True")
     elif DosInput == command[2]:
         print("Commands:")
-        print(command[0])
-        print(command[1])
-        print(command[2])
-        print(command[3])
-        print(command[4])
-        print(command[5])
-        print(command[6])
-        print(addon[0])
-        print(addon[1])
-        print(addon[2])
+        for commands in command:
+            print(commands)
+        for addons in addon:
+            print(addons)
         DosMain()
     elif DosInput == command[3]:
         os.system("py Scripts/Commands/time.py")
