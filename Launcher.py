@@ -4,18 +4,17 @@ import os
 command = ["close", "installer", "sebo-dos"]
 
 print("Commands:")
-print(command[0])
-print(command[1])
-print(command[2])
+for commands in command:
+    print(commands)
 
 while True:
     print("")
-    DosInput = str(input("Launcher: "))
-    if DosInput == command[0]:
+    MainInput = str(input("Launcher: "))
+    if MainInput == command[0]:
         break
-    elif DosInput == command[1]:
+    elif MainInput == command[1]:
         os.system("py Scripts/Install.py")
-    elif DosInput == command[2]:
+    elif MainInput == command[2]:
         print("")
         os.system("py Scripts/Sebo-Dos.py")
         if open("Data/Closed.sebodata", "r").read() == "True":
@@ -27,7 +26,7 @@ while True:
                 break
             else:
                 print("")
-                print("Your data is corrupted!")
+                print(open("Errors/Data", "r").read())
                 time.sleep(10)
                 break
         elif open("Data/Closed.sebodata", "r").read() == "False":
@@ -35,8 +34,8 @@ while True:
             print("Sebo-Dos is crashed!")
         else:
             print("")
-            print("Your data is corrupted!")
+            print(open("Errors/Data", "r").read())
             time.sleep(10)
             break
     else:
-        print("{" + DosInput + "}" + "is not a command!")
+        print("{" + MainInput + "}" + "is not a command!")

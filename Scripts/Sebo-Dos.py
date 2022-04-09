@@ -1,6 +1,6 @@
+from genericpath import exists
 import random
 import time
-import sys
 import os
 
 import PySimpleGUI as sg
@@ -41,59 +41,39 @@ if open("Data/Username.sebodata", "r").read() == " ":
     open("Data/Username.sebodata", "w").write(NewName)
     
 print("")
-print("Sebo-Dos Version: 1.7")
+print("Sebo-Dos Version: 1.8")
 print("")
 print("Hello " + str(open("Data/Username.sebodata", "r").read()) + "!")
 
 def DosMain():
-    command = ["close", "return", "help", "time", "date", "say", "old.paint"]
-    addon = ["addon1", "addon2", "addon3"]
-    secret = ["old"]
+    Icommand = ["close", "return", "help"]
 
     print("")
-    DosInput = str(input("Sebo-Dos:\ "))
-    if DosInput == command[0]:
+    MainInput = str(input("Sebo-Dos:\ "))
+    if MainInput == Icommand[0]:
         open("Data/Closed.sebodata", "w").write("True")
-    elif DosInput == command[1]:
+    elif MainInput == Icommand[1]:
         open("Data/Closed.sebodata", "w").write("True")
         open("Data/Returned.sebodata", "w").write("True")
-    elif DosInput == command[2]:
+    elif MainInput == Icommand[2]:
         print("Commands:")
-        for commands in command:
-            print(commands)
-        for addons in addon:
-            print(addons)
-        DosMain()
-    elif DosInput == command[3]:
-        os.system("py Scripts/Commands/time.py")
-        DosMain()
-    elif DosInput == command[4]:
-        os.system("py Scripts/Commands/date.py")
-        DosMain()
-    elif DosInput == command[5]:
-        os.system("py Scripts/Commands/say.py")
-        DosMain()
-    elif DosInput == command[6]:
-        os.system("py Scripts/OldPaint.py")
-        DosMain()
-    elif DosInput == addon[0]:
+        for Icommands in Icommand:
+            print(Icommands)
+        for commands in os.listdir("Scripts/Commands/"):
+            print(commands[:-3])
         print("")
-        open("Data/AddonLaunch.sebodata", "w").write("True")
-        os.system("py Scripts/Addons/Addon1.py")
+        print("Programs:")
+        for commands in os.listdir("Scripts/Programs/"):
+            print(commands[:-3])
         DosMain()
-    elif DosInput == addon[1]:
-        print("")
-        os.system("py Scripts/Addons/Addon2.py")
+    elif exists("Scripts/Commands/" + MainInput + ".py") == True:
+        os.system("py Scripts/Commands/" + MainInput + ".py")
         DosMain()
-    elif DosInput == addon[2]:
-        print("")
-        os.system("py Scripts/Addons/Addon3.py")
-        DosMain()
-    elif DosInput == secret[0]:
-        os.system("py Scripts/old")
+    elif exists("Scripts/Programs/" + MainInput + ".py") == True:
+        os.system("py Scripts/Programs/" + MainInput + ".py")
         DosMain()
     else:
-        print("{" + DosInput + "} is not a command, try {help}.")
+        print("{" + MainInput + "} is not a command, try {help}.")
         DosMain()
 
 DosMain()
