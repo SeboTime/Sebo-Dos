@@ -23,13 +23,10 @@ while True:
     if open("Data/FirstStart.data", "r").read() == "True":
         StartBarTime = FirstStartBarTime
     if event == "Start Sebo-Dos":
-        with tqdm.tqdm(total=StartBarTime, desc="Starting", colour="blue") as StartBar:
-            StartWindow.close()
-            for i in range(StartBarTime):
-                time.sleep(0.1)
-                StartBar.update(1)
-            StartBar.close()
-            break
+        StartWindow.close()
+        for StartBar in tqdm.tqdm(range(100)):
+            time.sleep(0.1)
+        break
     if event == sg.WIN_CLOSED:
         open("Data/Closed.data", "w").write("True")
         open("Data/Returned.data", "w").write("True")
