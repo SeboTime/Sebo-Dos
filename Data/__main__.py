@@ -1,2 +1,0 @@
-FirstLaunch = True
-Username = ""
