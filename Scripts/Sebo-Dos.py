@@ -6,8 +6,6 @@ import os
 import PySimpleGUI as sg
 import tqdm
 
-import Data
-
 StartWindow = sg.Window(title="Sebo-Dos", icon="Icons/Sebo-Dos.ico", background_color="blue", keep_on_top=True, disable_minimize=True, margins=(50,0), layout=[
     [sg.Button("Start Sebo-Dos")],
     [sg.Button("Reset Data")]
@@ -20,9 +18,9 @@ WinClosed = False
 while True:
     event, values = StartWindow.read()
     if event == "Reset Data":
-        Data.User.FirstLaunch = True
-        Data.User.Username = ""
-    if Data.User.FirstLaunch == True:
+        open("Data/FirstStart.data", "w").write("True")
+        open("Data/Username.data", "w").write(" ")
+    if open("Data/FirstStart.data", "r").read() == "True":
         StartBarTime = FirstStartBarTime
     if event == "Start Sebo-Dos":
         with tqdm.tqdm(total=StartBarTime, desc="Starting", colour="blue") as StartBar:
@@ -39,17 +37,17 @@ while True:
         break
 
 if WinClosed == False:
-    if Data.User.Username == "":
+    if open("Data/Username.data", "r").read() == " ":
         print("")
         NewName = input("Name: ")
-        Data.User.Username = NewName
-    if Data.User.Username == True:
-        Data.User.FirstLaunch = False
+        open("Data/Username.data", "w").write(NewName)
+    if open("Data/FirstStart.data", "r").read() == "True":
+        open("Data/FirstStart.data", "w").write("False")
         
     print("")
     print("Sebo-Dos Version: 1.8")
     print("")
-    print("Hello " + Data.User.Username + "!")
+    print("Hello " + str(open("Data/Username.data", "r").read()) + "!")
 
 def DosMain():
     Icommand = ["close", "return", "help"]
