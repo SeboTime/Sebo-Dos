@@ -1,0 +1,2 @@
+FirstLaunch = True
+Username = ""

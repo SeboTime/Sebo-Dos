@@ -1,7 +1,7 @@
 import time
 import os
 
-command = ["close", "help", "installer", "sebo-dos"]
+command = ["close", "help", "install", "sebo-dos"]
 Start = True
 
 while True:
