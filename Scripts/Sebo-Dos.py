@@ -24,7 +24,7 @@ while True:
         StartBarTime = FirstStartBarTime
     if event == "Start Sebo-Dos":
         StartWindow.close()
-        for StartBar in tqdm.tqdm(range(100)):
+        for StartBar in tqdm.tqdm(range(StartBarTime)):
             time.sleep(0.1)
         break
     if event == sg.WIN_CLOSED:
